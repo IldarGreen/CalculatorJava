@@ -17,11 +17,11 @@ public class NativeLib {
 // g++ -c -Wall -Werror -Wextra -std=c++17 -fpic model.cc
 // g++ -shared -o native_lib.so model.o
 
+//javac -h . NativeLib.java
 
 
 
-
-// javac -d bin/ src/smartcalc/src/main/java/com.greenone.smartcalc/NativeLib.java
+// javac -d bin/ src/main/java/com/greenone/smartcalc/NativeLib.java
 // cd bin
 // javah my.mega.pack.NativeLib
 
