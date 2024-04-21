@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.greenone.smartcalc.Controller;
+
+
 public class SmartCalcApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,7 +23,7 @@ public class SmartCalcApplication extends Application {
 
     @Override
     public void stop() throws Exception {
-//        Controller
+        Controller.SaveHistory();
         super.stop();
     }
 

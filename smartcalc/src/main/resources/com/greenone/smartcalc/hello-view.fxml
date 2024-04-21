@@ -63,7 +63,7 @@
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button6Click" text="6" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button3Click" text="3" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                                     <Button fx:id="PlusButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#PlusButtonClick" prefWidth="87.0" text="+" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button0Click" text="0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                    <Button fx:id="Button0Click" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button0Click" text="0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                                     <Button fx:id="dotButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#dotButtonClick" text="." GridPane.columnIndex="4" GridPane.rowIndex="6" />
                                     <Button fx:id="ACButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ACButtonClick" text="AC" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                                     <Button fx:id="AtanButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AtanButtonClick" text="atan" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -82,7 +82,7 @@
                                     <Button fx:id="RightBracketButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#RightBracketButtonClick" text=")" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                                     <Button fx:id="SqrtButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#SqrtButtonClick" text="sqrt" GridPane.rowIndex="5" />
                                     <Button fx:id="ResultButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ResultButtonClick" prefHeight="30.0" prefWidth="173.0" text="=" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                                    <Label fx:id="layerMenu" prefHeight="107.0" prefWidth="545.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+                                    <Label fx:id="layerMenu" prefHeight="107.0" prefWidth="531.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                                     <ListView fx:id="listViewHistory" prefHeight="107.0" prefWidth="545.0" GridPane.columnSpan="4">
                                         <GridPane.margin>
                                             <Insets right="50.0" />
@@ -104,7 +104,7 @@
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="745.0" prefWidth="544.0">
                         <children>
-                            <LineChart fx:id="LineChart" layoutX="26.0" layoutY="31.0" prefHeight="387.0" prefWidth="461.0">
+                            <LineChart fx:id="LineChart" layoutX="42.0" layoutY="129.0" prefHeight="387.0" prefWidth="461.0">
                                 <xAxis>
                                     <CategoryAxis side="BOTTOM" />
                                 </xAxis>
@@ -112,9 +112,9 @@
                                     <NumberAxis side="LEFT" />
                                 </yAxis>
                             </LineChart>
-                            <Label fx:id="layerMenu1" layoutX="10.0" layoutY="14.0" prefHeight="107.0" prefWidth="480.0" />
-                            <TextField fx:id="MinTextField" layoutX="82.0" layoutY="429.0" onAction="#TextChange" />
-                            <TextField fx:id="MaxTextField" layoutX="293.0" layoutY="429.0" onAction="#TextChange" />
+                            <Label fx:id="layerMenu1" layoutX="10.0" layoutY="14.0" prefHeight="107.0" prefWidth="524.0" />
+                            <TextField fx:id="MinTextField" layoutX="90.0" layoutY="518.0" onAction="#TextChange" />
+                            <TextField fx:id="MaxTextField" layoutX="295.0" layoutY="518.0" onAction="#TextChange" />
                         </children>
                     </AnchorPane>
                 </content>
