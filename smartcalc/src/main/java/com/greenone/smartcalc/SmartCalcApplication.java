@@ -23,7 +23,7 @@ public class SmartCalcApplication extends Application {
 
     @Override
     public void stop() throws Exception {
-        Controller.SaveHistory();
+//        Controller.SaveHistory();
         super.stop();
     }
 

@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="1000.0" maxWidth="1602.0" minHeight="460.0" minWidth="539.0" prefHeight="796.0" prefWidth="584.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calc.Controller">
+<VBox alignment="CENTER" fillWidth="false" maxHeight="1000.0" maxWidth="1602.0" minHeight="460.0" minWidth="539.0" prefHeight="796.0" prefWidth="584.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greenone.smartcalc.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -50,7 +50,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                 <children>
-                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button7Click" text="7" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Button fx:id="Button7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button7Click" text="7" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button4Click" text="4" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button8Click" text="8" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button5Click" text="5" GridPane.columnIndex="4" GridPane.rowIndex="4" />
@@ -64,7 +64,7 @@
                                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button3Click" text="3" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                                     <Button fx:id="PlusButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#PlusButtonClick" prefWidth="87.0" text="+" GridPane.columnIndex="6" GridPane.rowIndex="6" />
                                     <Button fx:id="Button0Click" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Button0Click" text="0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                                    <Button fx:id="dotButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#dotButtonClick" text="." GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                    <Button fx:id="dotButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#DotButtonClick" text="." GridPane.columnIndex="4" GridPane.rowIndex="6" />
                                     <Button fx:id="ACButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ACButtonClick" text="AC" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                                     <Button fx:id="AtanButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AtanButtonClick" text="atan" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                     <Button fx:id="AsinButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AsinButtonClick" text="asin" GridPane.rowIndex="4" />

@@ -1,5 +1,6 @@
 package com.greenone.smartcalc;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -43,58 +44,58 @@ public class Controller {
     }
 
     @FXML
-    protected void onButton1Click() {
+    protected void Button1Click() {
         layerMenu.setText(layerMenu.getText() + "1");
     }
 
     @FXML
-    protected void onButton2Click() {
+    protected void Button2Click() {
         layerMenu.setText(layerMenu.getText() + "2");
     }
 
     @FXML
-    protected void onButton3Click() {
+    protected void Button3Click() {
         layerMenu.setText(layerMenu.getText() + "3");
     }
 
     @FXML
-    protected void onButton4Click() {
+    protected void Button4Click() {
         layerMenu.setText(layerMenu.getText() + "4");
     }
 
     @FXML
-    protected void onButton5Click() {
+    protected void Button5Click() {
         layerMenu.setText(layerMenu.getText() + "5");
     }
 
     @FXML
-    protected void onButton6Click() {
+    protected void Button6Click() {
         layerMenu.setText(layerMenu.getText() + "6");
     }
 
     @FXML
-    protected void onButton7Click() {
+    protected void Button7Click() {
         layerMenu.setText(layerMenu.getText() + "7");
     }
 
     @FXML
-    protected void onButton8Click() {
+    protected void Button8Click() {
         layerMenu.setText(layerMenu.getText() + "8");
     }
 
     @FXML
-    protected void onButton9Click() {
+    protected void Button9Click() {
         layerMenu.setText(layerMenu.getText() + "9");
     }
 
 
     @FXML
-    protected void onDotButtonClick() {
+    protected void DotButtonClick() {
         layerMenu.setText(layerMenu.getText() + ".");
     }
 
     @FXML
-    protected void onACButtonClick() {
+    protected void ACButtonClick() {
         layerMenu.setText("");
     }
 
