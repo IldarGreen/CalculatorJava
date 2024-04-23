@@ -11,26 +11,31 @@ import javafx.scene.chart.XYChart;
 import java.text.DecimalFormat;
 import java.io.*;
 import com.greenone.smartcalc.NativeLib;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class Controller {
     private NativeLib nativeLib;
-    private static ListView<String> listViewShow;///
+    private static ListView<String> listViewCopy;///
 
     @FXML
-    private Label layerMenu;
+    private TextField InputLable;
 
     @FXML
-    private Label layerMenu1;
+    private Label ErrorLable;
 
     @FXML
-    private TextField TextField;
+    private Label InputLable1;
+
+    @FXML
+    private TextField TextFieldX;
 
     ///
     @FXML
     private LineChart<Number, Number> LineChart;
     ///
     @FXML
-    private ListView<String> listViewHistory;
+    private ListView<String> listViewShow;
     ///
     @FXML
     private TextField MaxTextField;
@@ -41,211 +46,210 @@ public class Controller {
 //    -----------------------------------------------------------
     @FXML
     protected void Button0Click() {
-        layerMenu.setText(layerMenu.getText() + "0");
+        InputLable.setText(InputLable.getText() + "0");
     }
 
     @FXML
     protected void Button1Click() {
-        layerMenu.setText(layerMenu.getText() + "1");
+        InputLable.setText(InputLable.getText() + "1");
     }
 
     @FXML
     protected void Button2Click() {
-        layerMenu.setText(layerMenu.getText() + "2");
+        InputLable.setText(InputLable.getText() + "2");
     }
 
     @FXML
     protected void Button3Click() {
-        layerMenu.setText(layerMenu.getText() + "3");
+        InputLable.setText(InputLable.getText() + "3");
     }
 
     @FXML
     protected void Button4Click() {
-        layerMenu.setText(layerMenu.getText() + "4");
+        InputLable.setText(InputLable.getText() + "4");
     }
 
     @FXML
     protected void Button5Click() {
-        layerMenu.setText(layerMenu.getText() + "5");
+        InputLable.setText(InputLable.getText() + "5");
     }
 
     @FXML
     protected void Button6Click() {
-        layerMenu.setText(layerMenu.getText() + "6");
+        InputLable.setText(InputLable.getText() + "6");
     }
 
     @FXML
     protected void Button7Click() {
-        layerMenu.setText(layerMenu.getText() + "7");
+        InputLable.setText(InputLable.getText() + "7");
     }
 
     @FXML
     protected void Button8Click() {
-        layerMenu.setText(layerMenu.getText() + "8");
+        InputLable.setText(InputLable.getText() + "8");
     }
 
     @FXML
     protected void Button9Click() {
-        layerMenu.setText(layerMenu.getText() + "9");
+        InputLable.setText(InputLable.getText() + "9");
     }
 
 
     @FXML
     protected void DotButtonClick() {
-        layerMenu.setText(layerMenu.getText() + ".");
+        InputLable.setText(InputLable.getText() + ".");
     }
 
     @FXML
     protected void ACButtonClick() {
-        layerMenu.setText("");
+        InputLable.setText("");
+        ErrorLable.setText("");
     }
 
     @FXML
     public void TanButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "tan(");
+        InputLable.setText(InputLable.getText() + "tan(");
     }
 
     @FXML
     public void CosButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "cos(");
+        InputLable.setText(InputLable.getText() + "cos(");
     }
 
     @FXML
     public void SinButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "sin(");
+        InputLable.setText(InputLable.getText() + "sin(");
     }
 
     @FXML
     public void AtanButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "atan(");
+        InputLable.setText(InputLable.getText() + "atan(");
     }
 
     @FXML
     public void AsinButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "asin(");
+        InputLable.setText(InputLable.getText() + "asin(");
     }
 
     @FXML
     public void AcosButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "acos(");
+        InputLable.setText(InputLable.getText() + "acos(");
     }
 
     @FXML
     public void LogButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "log(");
+        InputLable.setText(InputLable.getText() + "log(");
     }
 
     @FXML
     public void LnButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "ln(");
+        InputLable.setText(InputLable.getText() + "ln(");
     }
 
     @FXML
     public void DevButton() {
-        layerMenu.setText(layerMenu.getText() + "/");
+        InputLable.setText(InputLable.getText() + "/");
     }
 
     @FXML
     public void MulButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "*");
+        InputLable.setText(InputLable.getText() + "*");
     }
 
     @FXML
     public void SubButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "-");
+        InputLable.setText(InputLable.getText() + "-");
     }
 
     @FXML
     public void PlusButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "+");
+        InputLable.setText(InputLable.getText() + "+");
     }
 
     @FXML
     public void PiButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "π");
+        InputLable.setText(InputLable.getText() + "π");
     }
 
     @FXML
     public void PowButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "^");
+        InputLable.setText(InputLable.getText() + "^");
     }
 
     @FXML
     public void ModButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "mod(");
+        InputLable.setText(InputLable.getText() + "mod(");
     }
 
     @FXML
     public void SqrtButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "sqrt(");
+        InputLable.setText(InputLable.getText() + "sqrt(");
     }
 
     @FXML
     public void XButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "x");
+        InputLable.setText(InputLable.getText() + "x");
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     public void CEButtonClick() {
-        if (layerMenu.getText().length() > 0) {
-            layerMenu.setText(layerMenu.getText().substring(0, layerMenu.getText().length() - 1));
+        if (InputLable.getText().length() > 0) {
+            InputLable.setText(InputLable.getText().substring(0, InputLable.getText().length() - 1));
+            ErrorLable.setText("");
         }
     }
 
     @FXML
     public void LeftBracketButtonClick() {
-        layerMenu.setText(layerMenu.getText() + "(");
+        InputLable.setText(InputLable.getText() + "(");
     }
 
     @FXML
     public void RightBracketButtonClick() {
-        layerMenu.setText(layerMenu.getText() + ")");
+        InputLable.setText(InputLable.getText() + ")");
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     public void ResultButtonClick() {
-//        Object selectedItem = listViewHistory.getSelectionModel().getSelectedItem();
+//        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
 //        if (selectedItem != null) {
-//            layerMenu.setText(selectedItem.toString());
-//            listViewHistory.getItems().remove(selectedItem);
-//            listViewHistory.getSelectionModel().clearSelection();
-//        } else if (selectedItem == null && layerMenu.getText().length() > 0 && layerMenu.getText().length() < 256) {
-//            listViewHistory.getItems().add(layerMenu.getText());
-//            layerMenu.setText(nativeLib.Arithmetic(layerMenu.getText(), TextField.getText()).replaceAll("\\.?0*$", ""));
-//            listViewHistory.scrollTo(listViewHistory.getItems().size() - 1);
-//        } else if (selectedItem == null && layerMenu.getText().length() == 0) {
-//            listViewHistory.getItems().clear();
+//            InputLable.setText(selectedItem.toString());
+//            listViewShow.getItems().remove(selectedItem);
+//            listViewShow.getSelectionModel().clearSelection();
+//        } else if (selectedItem == null && InputLable.getText().length() > 0 && InputLable.getText().length() < 256) {
+//            listViewShow.getItems().add(InputLable.getText());
+//            InputLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
+//            listViewShow.scrollTo(listViewShow.getItems().size() - 1);
+//        } else if (selectedItem == null && InputLable.getText().length() == 0) {
+//            listViewShow.getItems().clear();
 //        }
-//        listViewShow = listViewHistory;
+//        listViewCopy = listViewShow;
         //---------------------------------------------------------------------------------------------
+//        System.out.println("----------------------------------------------------------------");
+//        String result = nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText());
+//        System.out.println(result);
+//        ErrorLable.setText(result);
 
-//        System.out.println(layerMenu.getText());
-//        System.out.println(TextField.getText());
-//
-//        nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText());
-        System.out.println("----------------------------------------------------------------");
-//        System.out.println(nativeLib.ReturnDouble());
+//        SaveHistory();
 
-        String result = nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText());
-        System.out.println(result);
-        layerMenu.setText(result);
+        if (TextFieldX.getText().isEmpty()) {
+            TextFieldX.setText("0");
+        }
 
-//        System.out.println(nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText()));
-//        layerMenu.setText(String.valueOf(nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText())));
+        ErrorLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     public void clearClick() {
         listViewShow.getItems().clear();
-        listViewHistory.getItems().clear();
     }
 
     @FXML
     public void GraphButtonClick() {
-        layerMenu1.setText(layerMenu.getText());
+        InputLable1.setText(InputLable.getText());
         try {
             double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
             double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
@@ -263,11 +267,11 @@ public class Controller {
     @FXML
     private void initialize() {
         nativeLib = new NativeLib();
-//        listViewShow = listViewHistory;
+//        listViewShow = listViewShow;
 //        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
 //            String line;
 //            while ((line = reader.readLine()) != null) {
-//                listViewHistory.getItems().add(line);
+//                listViewShow.getItems().add(line);
 //            }
 //
 //        } catch (IOException e) {
@@ -279,7 +283,7 @@ public class Controller {
 //        if (LineChart.getData().size() > 0) LineChart.getData().clear();
 //        XYChart.Series series = new XYChart.Series();
 //        series.setName("Graph");
-//        if (!nativeLib.MainFunRunner(layerMenu.getText())) return;
+//        if (!nativeLib.MainFunRunner(InputLable.getText())) return;
 //        if(min < -1000000.0 || max > 1000000.0) return;
 //        double N = 100.0;
 //        double h = (max - min) / N;
@@ -305,12 +309,18 @@ public class Controller {
     public static void SaveHistory() {
         String historyFile = "src/main/resources/history.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(historyFile))) {
-            for (int i = 0; listViewShow != null && i < listViewShow.getItems().size(); i++) {
-                writer.write(listViewShow.getItems().get(i).toString());
+            for (int i = 0; listViewCopy != null && i < listViewCopy.getItems().size(); i++) {
+                writer.write(listViewCopy.getItems().get(i).toString());
                 writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+//    public void handle(KeyEvent keyEvent) {
+//        if (keyEvent.getCode() == KeyCode.ENTER)  {
+//            System.out.println("rgnht4rthytt4thr ENTER");
+//        }
+//    }
 }
