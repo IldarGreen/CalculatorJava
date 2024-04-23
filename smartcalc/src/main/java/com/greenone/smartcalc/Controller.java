@@ -3,6 +3,7 @@ package com.greenone.smartcalc;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
@@ -29,6 +30,9 @@ public class Controller {
 
     @FXML
     private TextField TextFieldX;
+
+    @FXML
+    private Button AddButton;
 
     ///
     @FXML
@@ -178,7 +182,7 @@ public class Controller {
 
     @FXML
     public void ModButtonClick() {
-        InputLable.setText(InputLable.getText() + "mod(");
+        InputLable.setText(InputLable.getText() + "mod");
     }
 
     @FXML
@@ -232,19 +236,43 @@ public class Controller {
 //        System.out.println(result);
 //        ErrorLable.setText(result);
 
-//        SaveHistory();
+
+//        AddButton
 
         if (TextFieldX.getText().isEmpty()) {
             TextFieldX.setText("0");
         }
-
+        if (!InputLable.getText().isEmpty() && InputLable.getText().length() < 256) {
+            listViewShow.getItems().add(InputLable.getText());
+        }
         ErrorLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
-    public void clearClick() {
-        listViewShow.getItems().clear();
+    public void AddButtonClick() {
+//        listViewShow.setVisible(false);
+//        AddButton.setVisible(false);
+        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            InputLable.setText(selectedItem.toString());
+            ErrorLable.setText("");
+        }
+    }
+
+    @FXML
+    public void HistoryButtonClick() {
+        if (listViewShow.isVisible()) {
+            listViewShow.setVisible(false);
+            AddButton.setVisible(false);
+        } else {
+            listViewShow.setVisible(true);
+            AddButton.setVisible(true);
+        }
+//        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
+//        if (selectedItem != null) {
+//            InputLable.setText(selectedItem.toString());
+//            ErrorLable.setText("");
+//        }
     }
 
     @FXML
@@ -267,6 +295,8 @@ public class Controller {
     @FXML
     private void initialize() {
         nativeLib = new NativeLib();
+        listViewShow.setVisible(false);
+        AddButton.setVisible(false);
 //        listViewShow = listViewShow;
 //        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
 //            String line;
