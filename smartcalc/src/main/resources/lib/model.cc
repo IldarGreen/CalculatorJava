@@ -275,12 +275,13 @@ double Model::Calculate(std::stack<Token>& output, double x) {
 
 /// @brief A runner that launches all the necessary functions and works with
 /// exceptions.
-double Model::MainFunRunner(std::string input, double x,
-                            std::string& throwed_error) {
+std::string Model::MainFunRunner(std::string input, std::string xStr) {
+  double x = std::stod(xStr);
   std::queue<Token> queue;
   std::stack<Token> operators;
   std::stack<Token> output;
   double result = NAN;
+  std::string throwed_error;
   ToLowercase(input);
 
   try {
@@ -299,14 +300,16 @@ double Model::MainFunRunner(std::string input, double x,
       std::cerr << "Caught: MainFunRunner: ParseInputToElement: " << e.what()
                 << std::endl;
       throwed_error = e.what();
+      return throwed_error;
     }
   } catch (const std::exception& e) {
     std::cerr << "Caught: MainFunRunner: InputStringValidation: " << e.what()
               << '\n';
     throwed_error = e.what();
+    return throwed_error;
   }
 
-  return result;
+  return std::to_string(result);
 }
 
 void Model::ModelGetCE(std::string& input) {

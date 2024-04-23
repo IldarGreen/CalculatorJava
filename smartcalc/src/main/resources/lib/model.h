@@ -38,8 +38,7 @@ class Model {
                              std::stack<Token>& output);
   static void StackInversion(std::stack<Token>& output);
   static double Calculate(std::stack<Token>& output, double x);
-  static double MainFunRunner(std::string input, double x,
-                              std::string& throwed_error);
+  static std::string MainFunRunner(std::string input, std::string xStr);
 
   static void ModelGetCE(std::string& input);
   static void ModelGetAC(std::string& input);

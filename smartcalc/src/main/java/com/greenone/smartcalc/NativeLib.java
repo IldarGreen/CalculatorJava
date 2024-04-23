@@ -6,11 +6,9 @@ public class NativeLib {
         System.load(currentDirectory + "/src/main/resources/lib/native_lib.so");
     }
 
-    public native double Graph(String str);//
+//    public native double Graph(String str);//
 
-    public native double MainFunRunner(String input, double x);//
-
-    public native String Calculate(String string, double x);//
+    public native String MainFunRunner(String input, String x);
 }
 
 
@@ -19,11 +17,8 @@ public class NativeLib {
 
 //javac -h . NativeLib.java
 
+//g++ -shared -fPIC -o libMyLibrary.so MyLibrary.cpp
+//g++ -shared -fPIC -o native_lib.so model.cc native_lib.cpp
 
 
-// javac -d bin/ src/main/java/com/greenone/smartcalc/NativeLib.java
-// cd bin
-// javah my.mega.pack.NativeLib
-
-//javac src/smartcalc/src/main/java/com.greenone.smartcalc/NativeLib.java
-//javah NativeLib
+//g++ -I/Users/vanesabo/Library/Java/JavaVirtualMachines/openjdk-22.0.1/Contents/Home/include/ -I/Users/vanesabo/Library/Java/JavaVirtualMachines/openjdk-22.0.1/Contents/Home/include/darwin -shared -fPIC -o native_lib.so model.cc native_lib.cpp

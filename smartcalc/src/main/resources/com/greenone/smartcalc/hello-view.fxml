@@ -88,8 +88,8 @@
                                             <Insets right="50.0" />
                                         </GridPane.margin></ListView>
                                     <Button fx:id="XButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#XButtonClick" text="X" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                    <TextField fx:id="TextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                                    <Button fx:id="clear" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearClick" text="clear" GridPane.columnIndex="3">
+                                    <TextField fx:id="TextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="x" text="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <Button fx:id="clear" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearClick" prefHeight="107.0" prefWidth="71.0" text="clear" GridPane.columnIndex="3">
                                         <GridPane.margin>
                                             <Insets left="75.0" />
                                         </GridPane.margin>
@@ -128,12 +128,12 @@
                             <Text layoutX="43.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="При нажатии кнопки &quot;равно&quot; выражение сохраняется. При выборе строки из истории это значение автоматически восстанавливается в активной строке ввода." wrappingWidth="261.2158203125" />
                             <ImageView fitHeight="116.0" fitWidth="95.0" layoutX="343.0" layoutY="138.0">
                                 <image>
-                                    <Image url="@../../../foto/Screenshot_1.png" />
+                                    <Image url="@../../../Foto/Screenshot%202024-04-15%20at%2011.58.27.png" />
                                 </image>
                             </ImageView>
                             <ImageView fitHeight="74.0" fitWidth="140.0" layoutX="343.0" layoutY="26.0">
                                 <image>
-                                    <Image url="@../../../foto/Screenshot_2.png" />
+                                    <Image url="@../../../Foto/Screenshot%202024-04-15%20at%2012.00.47.png" />
                                 </image>
                             </ImageView>
                         </children>

@@ -219,6 +219,21 @@ public class Controller {
 //            listViewHistory.getItems().clear();
 //        }
 //        listViewShow = listViewHistory;
+        //---------------------------------------------------------------------------------------------
+
+//        System.out.println(layerMenu.getText());
+//        System.out.println(TextField.getText());
+//
+//        nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText());
+        System.out.println("----------------------------------------------------------------");
+//        System.out.println(nativeLib.ReturnDouble());
+
+        String result = nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText());
+        System.out.println(result);
+        layerMenu.setText(result);
+
+//        System.out.println(nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText()));
+//        layerMenu.setText(String.valueOf(nativeLib.MainFunRunner(layerMenu.getText(), TextField.getText())));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,7 +249,7 @@ public class Controller {
         try {
             double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
             double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
-            if(min < max) Paint(min, max);
+            if(min < max) Plot(min, max);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -245,9 +260,47 @@ public class Controller {
         GraphButtonClick();
     }
 
+    @FXML
+    private void initialize() {
+        nativeLib = new NativeLib();
+//        listViewShow = listViewHistory;
+//        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                listViewHistory.getItems().add(line);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
 
+    private void Plot(double min, double max) {
+//        if (LineChart.getData().size() > 0) LineChart.getData().clear();
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("Graph");
+//        if (!nativeLib.MainFunRunner(layerMenu.getText())) return;
+//        if(min < -1000000.0 || max > 1000000.0) return;
+//        double N = 100.0;
+//        double h = (max - min) / N;
+//
+//        for (double i = min; i < max; i+=h) {
+//            DecimalFormat df = new DecimalFormat("#.##");
+//            String str = String.valueOf(df.format(i));
+////            System.out.println("min = " + min + ", max = " + max + ", h = " + h +", i = " + i + ", str = " + str);
+//            if (Double.isFinite(nativeLib.Graph(str)))
+//                series.getData().add(new XYChart.Data<>(str, nativeLib.Graph(str)));
+//        }
+//
+//        LineChart.getData().add(series);
+//        LineChart.setCreateSymbols(false);
+//        LineChart.setLegendVisible(false);
+//        LineChart.setAnimated(false);
+//        LineChart.setCreateSymbols(false);
+//        LineChart.setLegendVisible(false);
+//        LineChart.setAnimated(false);
 
-
+    }
 
     public static void SaveHistory() {
         String historyFile = "src/main/resources/history.txt";
