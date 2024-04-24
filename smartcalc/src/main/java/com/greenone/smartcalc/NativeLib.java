@@ -6,9 +6,9 @@ public class NativeLib {
         System.load(currentDirectory + "/src/main/resources/lib/native_lib.so");
     }
 
-//    public native double Graph(String str);//
-
     public native String MainFunRunner(String input, String x);
+
+//    public native double Graph(String str);
 
     public native int FieldValidatorIntDouble(String x);
 }

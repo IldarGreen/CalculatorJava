@@ -35,6 +35,8 @@ public class Controller {
     @FXML
     private Button AddButton;
 
+    @FXML
+    private Button CleanButton;
     ///
     @FXML
     private LineChart<Number, Number> LineChart;
@@ -261,13 +263,21 @@ public class Controller {
     }
 
     @FXML
+    protected void CleanButtonClick() {
+        listViewShow.getItems().clear();
+        listViewCopy.getItems().clear();
+    }
+
+    @FXML
     public void HistoryButtonClick() {
         if (listViewShow.isVisible()) {
             listViewShow.setVisible(false);
             AddButton.setVisible(false);
+            CleanButton.setVisible(false);
         } else {
             listViewShow.setVisible(true);
             AddButton.setVisible(true);
+            CleanButton.setVisible(true);
         }
 //        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
 //        if (selectedItem != null) {
@@ -278,14 +288,15 @@ public class Controller {
 
     @FXML
     public void GraphButtonClick() {
-//        InputLable1.setText(InputLable.getText());
-//        try {
-//            double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
-//            double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
-//            if(min < max) Plot(min, max);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
+            double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
+            if(min < max) {
+                Plot(min, max);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -311,63 +322,64 @@ public class Controller {
         nativeLib = new NativeLib();
         listViewShow.setVisible(false);
         AddButton.setVisible(false);
+        CleanButton.setVisible(false);
+        MinTextField.setText("-10");
+        MaxTextField.setText("10");
 
-//        TextFieldX.focusedProperty().addListener(new ChangeListener<Boolean>()
-//        {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-//            {
-//                if (newPropertyValue)
-//                {
-//                    System.out.println("Textfield on focus");
-//                }
-//                else
-//                {
-//                    System.out.println("Textfield out focus");
-//                }
-//            }
-//        });
-
-//        TextFieldX.textProperty().addListener(
-////                (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
-//                    (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
-
-//        listViewShow = listViewShow;
-//        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                listViewShow.getItems().add(line);
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        listViewCopy = listViewShow;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                listViewShow.getItems().add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void Plot(double min, double max) {
-//        if (LineChart.getData().size() > 0) LineChart.getData().clear();
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("Graph");
-//        if (!nativeLib.MainFunRunner(InputLable.getText())) return;
-//        if(min < -1000000.0 || max > 1000000.0) return;
-//        double N = 100.0;
-//        double h = (max - min) / N;
-//
-//        for (double i = min; i < max; i+=h) {
-//            DecimalFormat df = new DecimalFormat("#.##");
-//            String str = String.valueOf(df.format(i));
-////            System.out.println("min = " + min + ", max = " + max + ", h = " + h +", i = " + i + ", str = " + str);
-//            if (Double.isFinite(nativeLib.Graph(str)))
-//                series.getData().add(new XYChart.Data<>(str, nativeLib.Graph(str)));
-//        }
-//
-//        LineChart.getData().add(series);
-//        LineChart.setCreateSymbols(false);
-//        LineChart.setLegendVisible(false);
-//        LineChart.setAnimated(false);
-//        LineChart.setCreateSymbols(false);
-//        LineChart.setLegendVisible(false);
-//        LineChart.setAnimated(false);
+        System.out.println(min + " " + max);/////////
+
+        if (LineChart.getData().size() > 0) {
+            LineChart.getData().clear();
+        }
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Graph");
+        try {
+            Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
+        } catch (Exception e) {
+            System.out.println("try_string == null ---------------------------");///////////////////
+            e.printStackTrace();
+            return;
+        }
+
+        if(min < -1000000.0 || max > 1000000.0) {
+            return;
+        }
+        double N = 100.0;
+        double h = (max - min) / N;
+
+        for (double i = min; i < max; i+=h) {
+            DecimalFormat df = new DecimalFormat("#.##");
+            String str = String.valueOf(df.format(i));
+            System.out.println(str + "____________________________");
+
+//            System.out.println("min = " + min + ", max = " + max + ", h = " + h +", i = " + i + ", str = " + str);
+//            double num = Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), String.valueOf(i)));
+
+            double num = Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), str));
+            if (Double.isFinite(num)) {
+                series.getData().add(new XYChart.Data<>(str, num));
+            }
+        }
+
+        LineChart.getData().add(series);
+        LineChart.setCreateSymbols(false);
+        LineChart.setLegendVisible(false);
+        LineChart.setAnimated(false);
+        LineChart.setCreateSymbols(false);
+        LineChart.setLegendVisible(false);
+        LineChart.setAnimated(false);
 
     }
 
@@ -382,10 +394,4 @@ public class Controller {
             e.printStackTrace();
         }
     }
-
-//    public void handle(KeyEvent keyEvent) {
-//        if (keyEvent.getCode() == KeyCode.ENTER)  {
-//            System.out.println("rgnht4rthytt4thr ENTER");
-//        }
-//    }
 }
