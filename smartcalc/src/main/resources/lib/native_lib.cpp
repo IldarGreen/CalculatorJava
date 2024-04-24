@@ -1,5 +1,6 @@
 #include <jni.h>
 #include "model.h"
+#include "validator.h"
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -8,6 +9,7 @@
 extern "C" {
 
     s21::Model model;
+    s21::Validator validator;
 
 //    JNIEXPORT jdouble JNICALL Java_com_greenone_smartcalc_NativeLib_Graph
 //        (JNIEnv *jEnv, jobject jObj, jstring jString) {
@@ -29,4 +31,15 @@ extern "C" {
             std::string message = model.MainFunRunner(arg1, arg2);
             return jEnv->NewStringUTF(message.c_str());
       }
+
+      JNIEXPORT int JNICALL Java_com_greenone_smartcalc_NativeLib_FieldValidatorIntDouble
+          (JNIEnv *jEnv, jobject jObj, jstring jString) {
+
+        const char *nativeString = jEnv->GetStringUTFChars(jString, NULL);
+        std::string arg = nativeString;
+        jEnv->ReleaseStringUTFChars(jString, nativeString);
+
+        int result = validator.FieldValidatorIntDouble(arg);
+        return result;
+        }
 }

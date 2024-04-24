@@ -18,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 public class Controller {
     private NativeLib nativeLib;
     private static ListView<String> listViewCopy;///
+    private double TextFieldXSave = 0;
 
     @FXML
     private TextField InputLable;
@@ -277,19 +278,32 @@ public class Controller {
 
     @FXML
     public void GraphButtonClick() {
-        InputLable1.setText(InputLable.getText());
-        try {
-            double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
-            double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
-            if(min < max) Plot(min, max);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        InputLable1.setText(InputLable.getText());
+//        try {
+//            double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
+//            double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
+//            if(min < max) Plot(min, max);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
     public void TextChange() {
-        GraphButtonClick();
+        int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
+        InputLable1.setText(InputLable.getText());
+        if (InputLable.isFocused()) {
+            InputLable1.setText(InputLable.getText());
+        }
+        if (TextFieldX.isFocused()) {
+            System.out.println("X in focus _________________________________________________");
+            System.out.println(nativeLib.FieldValidatorIntDouble(TextFieldX.getText()));
+            if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
+                System.out.println("X changed");
+                TextFieldX.setText(String.valueOf(TextFieldXSave));
+//                TextFieldX.setText("99990.111111");
+            }
+        }
     }
 
     @FXML
@@ -297,6 +311,10 @@ public class Controller {
         nativeLib = new NativeLib();
         listViewShow.setVisible(false);
         AddButton.setVisible(false);
+//        TextFieldX.textProperty().addListener(
+////                (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
+//                    (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
+
 //        listViewShow = listViewShow;
 //        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
 //            String line;

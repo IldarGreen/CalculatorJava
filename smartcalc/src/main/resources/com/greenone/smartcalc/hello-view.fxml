@@ -192,7 +192,7 @@
                               <font>
                                  <Font size="18.0" />
                               </font></Button>
-                                    <TextField fx:id="TextFieldX" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="120.0" promptText="X" text="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                    <TextField fx:id="TextFieldX" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#TextChange" prefWidth="120.0" promptText="X" text="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
                               <font>
                                  <Font size="18.0" />
                               </font></TextField>
@@ -204,7 +204,7 @@
                                  <Font size="18.0" />
                               </font>
                                     </Button>
-                           <TextField fx:id="InputLable" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="71.0" prefWidth="462.0" GridPane.columnSpan="6" GridPane.rowIndex="1">
+                           <TextField fx:id="InputLable" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#TextChange" prefHeight="71.0" prefWidth="462.0" GridPane.columnSpan="6" GridPane.rowIndex="1">
                               <font>
                                  <Font size="18.0" />
                               </font>
@@ -251,12 +251,12 @@
                             <Text layoutX="43.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="При нажатии кнопки &quot;равно&quot; выражение сохраняется. При выборе строки из истории это значение автоматически восстанавливается в активной строке ввода." wrappingWidth="261.2158203125" />
                             <ImageView fitHeight="116.0" fitWidth="95.0" layoutX="343.0" layoutY="138.0">
                                 <image>
-                                    <Image url="@../../../Foto/Screenshot%202024-04-15%20at%2011.58.27.png" />
+                                    <Image url="@../../../foto/Screenshot_1.png" />
                                 </image>
                             </ImageView>
                             <ImageView fitHeight="74.0" fitWidth="140.0" layoutX="343.0" layoutY="26.0">
                                 <image>
-                                    <Image url="@../../../Foto/Screenshot%202024-04-15%20at%2012.00.47.png" />
+                                    <Image url="@../../../foto/Screenshot_2.png" />
                                 </image>
                             </ImageView>
                         </children>
