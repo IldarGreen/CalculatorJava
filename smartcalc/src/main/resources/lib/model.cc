@@ -195,6 +195,7 @@ void Model::InfixToPostfix(std::queue<Token>& queue_in,
       while (!operators.empty()) {  // if operator
         peeked_oper = operators.top();
         if (peeked_oper.priority_ >= poped.priority_) {
+          if (poped.type_ == POWER && peeked_oper.type_ == POWER) break;
           output.push(peeked_oper);
           operators.pop();
         } else

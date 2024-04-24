@@ -17,17 +17,13 @@ import javafx.scene.input.KeyEvent;
 
 public class Controller {
     private NativeLib nativeLib;
-    private static ListView<String> listViewCopy;///
-//    private String TextFieldXSave;
+    private static ListView<String> listViewCopy;
 
     @FXML
     private TextField InputLable;
 
     @FXML
     private Label ErrorLable;
-
-    @FXML
-    private Label InputLable1;
 
     @FXML
     private TextField TextFieldX;
@@ -37,20 +33,19 @@ public class Controller {
 
     @FXML
     private Button CleanButton;
-    ///
+
     @FXML
     private LineChart<Number, Number> LineChart;
-    ///
+
     @FXML
     private ListView<String> listViewShow;
-    ///
+
     @FXML
     private TextField MaxTextField;
-    ///
+
     @FXML
     private TextField MinTextField;
 
-//    -----------------------------------------------------------
     @FXML
     protected void Button0Click() {
         InputLable.setText(InputLable.getText() + "0");
@@ -198,7 +193,6 @@ public class Controller {
         InputLable.setText(InputLable.getText() + "x");
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     public void CEButtonClick() {
         if (InputLable.getText().length() > 0) {
@@ -217,31 +211,28 @@ public class Controller {
         InputLable.setText(InputLable.getText() + ")");
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private void initialize() {
+        nativeLib = new NativeLib();
+        listViewShow.setVisible(false);
+        AddButton.setVisible(false);
+        CleanButton.setVisible(false);
+        MinTextField.setText("-10");
+        MaxTextField.setText("10");
+
+        listViewCopy = listViewShow;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                listViewShow.getItems().add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void ResultButtonClick() {
-//        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
-//        if (selectedItem != null) {
-//            InputLable.setText(selectedItem.toString());
-//            listViewShow.getItems().remove(selectedItem);
-//            listViewShow.getSelectionModel().clearSelection();
-//        } else if (selectedItem == null && InputLable.getText().length() > 0 && InputLable.getText().length() < 256) {
-//            listViewShow.getItems().add(InputLable.getText());
-//            InputLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
-//            listViewShow.scrollTo(listViewShow.getItems().size() - 1);
-//        } else if (selectedItem == null && InputLable.getText().length() == 0) {
-//            listViewShow.getItems().clear();
-//        }
-//        listViewCopy = listViewShow;
-        //---------------------------------------------------------------------------------------------
-//        System.out.println("----------------------------------------------------------------");
-//        String result = nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText());
-//        System.out.println(result);
-//        ErrorLable.setText(result);
-
-
-//        AddButton
-
         if (TextFieldX.getText().isEmpty()) {
             TextFieldX.setText("0");
         }
@@ -253,8 +244,6 @@ public class Controller {
 
     @FXML
     public void AddButtonClick() {
-//        listViewShow.setVisible(false);
-//        AddButton.setVisible(false);
         Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             InputLable.setText(selectedItem.toString());
@@ -279,11 +268,17 @@ public class Controller {
             AddButton.setVisible(true);
             CleanButton.setVisible(true);
         }
-//        Object selectedItem = listViewShow.getSelectionModel().getSelectedItem();
-//        if (selectedItem != null) {
-//            InputLable.setText(selectedItem.toString());
-//            ErrorLable.setText("");
-//        }
+    }
+
+    @FXML
+    public void TextChange() {
+        int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
+        if (TextFieldX.isFocused()) {
+            if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
+                System.out.println("X changed");
+                TextFieldX.setText("0");
+            }
+        }
     }
 
     @FXML
@@ -300,55 +295,17 @@ public class Controller {
     }
 
     @FXML
-    public void TextChange() {
-        int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
-        InputLable1.setText(InputLable.getText());
-        if (InputLable.isFocused()) {
-            InputLable1.setText(InputLable.getText());
-        }
-        if (TextFieldX.isFocused()) {
-            System.out.println("X in focus _________________________________________________");
-            System.out.println(nativeLib.FieldValidatorIntDouble(TextFieldX.getText()));
-            if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
-                System.out.println("X changed");
-//                TextFieldX.setText(TextFieldXSave);
-                TextFieldX.setText("0");
-            }
-        }
-    }
-
-    @FXML
-    private void initialize() {
-        nativeLib = new NativeLib();
-        listViewShow.setVisible(false);
-        AddButton.setVisible(false);
-        CleanButton.setVisible(false);
-        MinTextField.setText("-10");
-        MaxTextField.setText("10");
-
-        listViewCopy = listViewShow;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                listViewShow.getItems().add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void ReplotButtonClick() {
+        GraphButtonClick();
     }
 
     private void Plot(double min, double max) {
-        System.out.println(min + " " + max);/////////
-
-        if (LineChart.getData().size() > 0) {
-            LineChart.getData().clear();
-        }
+        LineChart.getData().clear();
         XYChart.Series series = new XYChart.Series();
         series.setName("Graph");
         try {
             Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
         } catch (Exception e) {
-            System.out.println("try_string == null ---------------------------");///////////////////
             e.printStackTrace();
             return;
         }
@@ -356,20 +313,17 @@ public class Controller {
         if(min < -1000000.0 || max > 1000000.0) {
             return;
         }
-        double N = 100.0;
+        double N = 500.0;
         double h = (max - min) / N;
+        double num;
 
         for (double i = min; i < max; i+=h) {
             DecimalFormat df = new DecimalFormat("#.##");
             String str = String.valueOf(df.format(i));
-            System.out.println(str + "____________________________");
-
-//            System.out.println("min = " + min + ", max = " + max + ", h = " + h +", i = " + i + ", str = " + str);
-//            double num = Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), String.valueOf(i)));
-
-            double num = Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), str));
-            if (Double.isFinite(num)) {
+            try {
+                num = Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), str));
                 series.getData().add(new XYChart.Data<>(str, num));
+            } catch (Exception e) {
             }
         }
 
@@ -380,7 +334,6 @@ public class Controller {
         LineChart.setCreateSymbols(false);
         LineChart.setLegendVisible(false);
         LineChart.setAnimated(false);
-
     }
 
     public static void SaveHistory() {

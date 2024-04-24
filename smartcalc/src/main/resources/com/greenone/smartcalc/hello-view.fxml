@@ -9,18 +9,16 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="1000.0" maxWidth="1602.0" minHeight="460.0" minWidth="539.0" prefHeight="796.0" prefWidth="584.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greenone.smartcalc.Controller">
+<VBox alignment="CENTER" fillWidth="false" maxHeight="1000.0" maxWidth="1602.0" minHeight="460.0" minWidth="539.0" prefHeight="641.0" prefWidth="584.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greenone.smartcalc.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -236,11 +234,11 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab onSelectionChanged="#GraphButtonClick" text="Graf">
+            <Tab onSelectionChanged="#GraphButtonClick" text="Graph">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="745.0" prefWidth="544.0">
                         <children>
-                            <LineChart fx:id="LineChart" layoutX="42.0" layoutY="129.0" prefHeight="387.0" prefWidth="461.0">
+                            <LineChart fx:id="LineChart" layoutX="12.0" layoutY="14.0" prefHeight="448.0" prefWidth="518.0">
                                 <xAxis>
                                     <CategoryAxis side="BOTTOM" />
                                 </xAxis>
@@ -248,12 +246,37 @@
                                     <NumberAxis side="LEFT" />
                                 </yAxis>
                             </LineChart>
-                            <Label fx:id="InputLable1" contentDisplay="RIGHT" layoutX="16.0" layoutY="66.0" prefHeight="44.0" prefWidth="513.0">
-                        <font>
-                           <Font size="18.0" />
-                        </font></Label>
-                            <TextField fx:id="MinTextField" layoutX="90.0" layoutY="518.0" onAction="#TextChange" />
-                            <TextField fx:id="MaxTextField" layoutX="295.0" layoutY="518.0" onAction="#TextChange" />
+                     <GridPane layoutX="44.0" layoutY="462.0" prefHeight="80.0" prefWidth="456.0">
+                       <columnConstraints>
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="77.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="165.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="78.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="164.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                                  <TextField fx:id="MinTextField" onAction="#TextChange" prefHeight="26.0" prefWidth="143.0" GridPane.columnIndex="1" />
+                                  <TextField fx:id="MaxTextField" onAction="#TextChange" prefHeight="26.0" prefWidth="176.0" GridPane.columnIndex="3" />
+                           <Label text="   min X">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                           <Label text="   max X" GridPane.columnIndex="2">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="ReplotButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ReplotButtonClick" prefHeight="26.0" prefWidth="149.0" text="Replot" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <font>
+                                 <Font size="18.0" />
+                              </font>
+                           </Button>
+                        </children>
+                     </GridPane>
                         </children>
                     </AnchorPane>
                 </content>
@@ -262,19 +285,11 @@
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                            <Label layoutX="334.0" layoutY="14.0" prefHeight="76.0" prefWidth="142.0" />
-                            <Text layoutX="43.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="В случае, если строка ввода не содержит данных, история результатов будет автоматически очищена при нажатии кнопки &quot;равно&quot;." wrappingWidth="281.6865234375" />
-                            <Text layoutX="43.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="При нажатии кнопки &quot;равно&quot; выражение сохраняется. При выборе строки из истории это значение автоматически восстанавливается в активной строке ввода." wrappingWidth="261.2158203125" />
-                            <ImageView fitHeight="116.0" fitWidth="95.0" layoutX="343.0" layoutY="138.0">
-                                <image>
-                                    <Image url="@../../../foto/Screenshot_1.png" />
-                                </image>
-                            </ImageView>
-                            <ImageView fitHeight="74.0" fitWidth="140.0" layoutX="343.0" layoutY="26.0">
-                                <image>
-                                    <Image url="@../../../foto/Screenshot_2.png" />
-                                </image>
-                            </ImageView>
+                     <TextArea layoutX="30.0" layoutY="40.0" prefHeight="358.0" prefWidth="485.0" text="&#9;SmartCalc v3.0 Desktop Java by Vanesabo&#10;&#10;&#9;Калькулятор SmartCalc v2.0 состоит из следующих подпрограмм: &#10;классический калькулятор, визуализатор графиков,.&#10;&#10;Классический калькулятор: &#10;&#10;&#9;Доступные операции: арифметические: сложение, вычитание, умножение, деление, возведение в степень, остаток от деления;&#10;тригонометрические: синус, косинус, тангенс, арксинус, арккосинус, арктангенс; также: вычисления квадратного корня, натуральный и десятичный логарифмы.&#10;&#9;Расчетная формула может содержать как целые числа, так и вещественные. &#10;&#9;Вещественные числа записываются через точку.&#10;&#10;Визуализатор графиков:&#10;&#10;  &#9;Отрисовывает графики валидных функций.&#10;&#9;Можно указать область определения и область значения в пределах от -1000000 до 1000000.&#10;  &#9;Формула вводится на вкладке классического калькулятора.">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextArea>
                         </children>
                     </AnchorPane>
                 </content>
