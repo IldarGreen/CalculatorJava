@@ -18,7 +18,7 @@ import javafx.scene.input.KeyEvent;
 public class Controller {
     private NativeLib nativeLib;
     private static ListView<String> listViewCopy;///
-    private double TextFieldXSave = 0;
+//    private String TextFieldXSave;
 
     @FXML
     private TextField InputLable;
@@ -300,8 +300,8 @@ public class Controller {
             System.out.println(nativeLib.FieldValidatorIntDouble(TextFieldX.getText()));
             if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
                 System.out.println("X changed");
-                TextFieldX.setText(String.valueOf(TextFieldXSave));
-//                TextFieldX.setText("99990.111111");
+//                TextFieldX.setText(TextFieldXSave);
+                TextFieldX.setText("0");
             }
         }
     }
@@ -311,6 +311,23 @@ public class Controller {
         nativeLib = new NativeLib();
         listViewShow.setVisible(false);
         AddButton.setVisible(false);
+
+//        TextFieldX.focusedProperty().addListener(new ChangeListener<Boolean>()
+//        {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+//            {
+//                if (newPropertyValue)
+//                {
+//                    System.out.println("Textfield on focus");
+//                }
+//                else
+//                {
+//                    System.out.println("Textfield out focus");
+//                }
+//            }
+//        });
+
 //        TextFieldX.textProperty().addListener(
 ////                (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
 //                    (observable, oldValue, newValue) -> TextFieldX.setText(newValue));
