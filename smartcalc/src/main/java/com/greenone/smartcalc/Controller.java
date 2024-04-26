@@ -239,6 +239,7 @@ public class Controller {
         if (!InputLable.getText().isEmpty() && InputLable.getText().length() < 256) {
             listViewShow.getItems().add(InputLable.getText());
         }
+        System.out.println("nativeLib.MainFunRunner = " + nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
         ErrorLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
     }
 

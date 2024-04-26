@@ -2,6 +2,7 @@
 
 #include <queue>
 #include <vector>
+#include <iomanip>////////////////////////////////////////////////////////
 
 namespace s21 {
 
@@ -223,6 +224,7 @@ void Model::StackInversion(std::stack<Token>& output) {
 
 /// @brief Makes calculations using the resulting formula.
 double Model::Calculate(std::stack<Token>& output, double x) {
+    std::cout << "x " << x << std::endl;//////////////////////////////////////////////
   double result = 0;
   std::stack<Token> for_calc;
   std::list<double> args_list;
@@ -271,16 +273,18 @@ double Model::Calculate(std::stack<Token>& output, double x) {
     }
   }
 
+  std::cout << "result " << result << std::endl;//////////////////////////////////////////////
   return result;
 }
 
 /// @brief A runner that launches all the necessary functions and works with
 /// exceptions.
 std::string Model::MainFunRunner(std::string input, std::string xStr) {
-    std::cerr << "MainFunRunner: input = "<< input << " | " << input.size() << std::endl;//////////////////
-    std::cerr << "MainFunRunner: xStr = "<< xStr << " | " << xStr.size() << std::endl;//////////////////
-    //1111111111111111 16
+  std::cout << "MainFunRunner: xStr = " << xStr << std::endl;//////////////////////////////////////////////
   double x = std::stod(xStr);
+  std::cout << std::setprecision(10) << "MainFunRunner: std::stold(xStr) = " << std::stold(xStr) << std::endl;//////////////////////////////////////////////
+  std::cout << "MainFunRunner: std::stold(xStr) = " << std::stold(xStr) << std::endl;//////////////////////////////////////////////
+  std::cout << "MainFunRunner: x = " << x << std::endl;//////////////////////////////////////////////
   std::queue<Token> queue;
   std::stack<Token> operators;
   std::stack<Token> output;
@@ -313,7 +317,15 @@ std::string Model::MainFunRunner(std::string input, std::string xStr) {
     return throwed_error;
   }
 
-  return std::to_string(result);
+  std::cout << "MainFunRunner: return : result = " << result << std::endl;//////////////////////////////////////////////
+  std::cout << "MainFunRunner: return : std::to_string(result) = " << std::to_string(result) << std::endl;//////////////////////////////////////////////
+  std::cout << "MainFunRunner: return : std::to_string(result) = " << std::to_string(result) << std::endl;//////////////////////////////////////////////
+      std::ostringstream out;
+      out.precision(7);
+      out << std::fixed << result;
+      std::cout << "MainFunRunner: return : std::move(out).str() = " << std::move(out).str() << std::endl;//////////////////////////////////////////////
+//  return std::to_string(result);
+  return std::move(out).str();
 }
 
 void Model::ModelGetCE(std::string& input) {
