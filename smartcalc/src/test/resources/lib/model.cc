@@ -277,9 +277,6 @@ double Model::Calculate(std::stack<Token>& output, double x) {
 /// @brief A runner that launches all the necessary functions and works with
 /// exceptions.
 std::string Model::MainFunRunner(std::string input, std::string xStr) {
-    std::cerr << "MainFunRunner: input = "<< input << " | " << input.size() << std::endl;//////////////////
-    std::cerr << "MainFunRunner: xStr = "<< xStr << " | " << xStr.size() << std::endl;//////////////////
-    //1111111111111111 16
   double x = std::stod(xStr);
   std::queue<Token> queue;
   std::stack<Token> operators;
