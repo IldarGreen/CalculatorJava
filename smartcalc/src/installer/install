@@ -1,0 +1,1 @@
+cd src/main/resources/Calc; mvn clean package
