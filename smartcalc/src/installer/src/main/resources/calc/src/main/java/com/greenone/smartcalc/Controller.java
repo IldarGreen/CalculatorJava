@@ -12,6 +12,7 @@ import java.io.*;
 
 public class Controller {
     private NativeLib nativeLib;
+    private static String historyPath;
     private static ListView<String> listViewCopy;
 
     @FXML
@@ -216,7 +217,12 @@ public class Controller {
         MaxTextField.setText("10");
 
         listViewCopy = listViewShow;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
+        String jarPath = SmartCalcApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        historyPath = jarPath.substring(0, jarPath.lastIndexOf("/")) + "/history.txt";
+        if (!new File(historyPath).exists()) {/////////////////////////////////
+            return;
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(historyPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 listViewShow.getItems().add(line);
@@ -224,6 +230,15 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                listViewShow.getItems().add(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
@@ -271,7 +286,7 @@ public class Controller {
         int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
         if (TextFieldX.isFocused()) {
             if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
-                System.out.println("X changed");
+//                System.out.println("X changed");
                 TextFieldX.setText("0");
             }
         }
@@ -333,8 +348,8 @@ public class Controller {
     }
 
     public static void SaveHistory() {
-        String historyFile = "src/main/resources/history.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(historyFile))) {
+//        String historyFile = "src/main/resources/history.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(historyPath))) {
             for (int i = 0; listViewCopy != null && i < listViewCopy.getItems().size(); i++) {
                 writer.write(listViewCopy.getItems().get(i).toString());
                 writer.newLine();

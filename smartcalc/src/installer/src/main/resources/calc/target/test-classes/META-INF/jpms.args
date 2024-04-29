@@ -1,4 +1,0 @@
---patch-module
-com.greenone.smartcalc=_
---add-reads
-com.greenone.smartcalc=ALL-UNNAMED

@@ -20,7 +20,7 @@ public class InstallerApplication extends Application {
             File selectedDirectory = directoryChooser.showDialog(primaryStage);
             Save(selectedDirectory.getAbsolutePath());
             build();
-            createShortcut(selectedDirectory.getAbsolutePath(),"Calc");
+            createShortcut(selectedDirectory.getAbsolutePath(),"SmartCalc");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,10 +36,10 @@ public class InstallerApplication extends Application {
         String projectPath = InstallerApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         projectPath = projectPath.substring(0, projectPath.lastIndexOf("/"));
         projectPath = projectPath.substring(0, projectPath.lastIndexOf("/"));
-        projectPath += "/src/main/resources/Calc";
+        projectPath += "/src/main/resources/calc";
 
         Path sourceDir = Paths.get(projectPath);
-        Path destinationDir = Paths.get(path + "/Calc");
+        Path destinationDir = Paths.get(path + "/SmartCalc");
         copyDirectory(sourceDir, destinationDir);
     }
 
@@ -61,7 +61,7 @@ public class InstallerApplication extends Application {
     }
 
     public static void createShortcut(String targetFilePath, String shortcutName) throws IOException {
-        targetFilePath += "/Calc/target/calc-1.0-SNAPSHOT-shaded.jar";
+        targetFilePath += "/SmartCalc/target/smartcalc-1.0-SNAPSHOT-shaded.jar";
         String desktopPath = System.getProperty("user.home") + "/Desktop";
 
         Path shortcutPath = Paths.get(desktopPath, shortcutName);
