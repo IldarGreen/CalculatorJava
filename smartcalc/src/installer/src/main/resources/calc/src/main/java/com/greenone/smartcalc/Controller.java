@@ -190,14 +190,6 @@ public class Controller {
     }
 
     @FXML
-    public void CEButtonClick() {
-        if (InputLable.getText().length() > 0) {
-            InputLable.setText(InputLable.getText().substring(0, InputLable.getText().length() - 1));
-            ErrorLable.setText("");
-        }
-    }
-
-    @FXML
     public void LeftBracketButtonClick() {
         InputLable.setText(InputLable.getText() + "(");
     }
@@ -205,6 +197,14 @@ public class Controller {
     @FXML
     public void RightBracketButtonClick() {
         InputLable.setText(InputLable.getText() + ")");
+    }
+
+    @FXML
+    public void CEButtonClick() {
+        if (InputLable.getText().length() > 0) {
+            InputLable.setText(InputLable.getText().substring(0, InputLable.getText().length() - 1));
+            ErrorLable.setText("");
+        }
     }
 
     @FXML
@@ -249,6 +249,7 @@ public class Controller {
         if (!InputLable.getText().isEmpty() && InputLable.getText().length() < 256) {
             listViewShow.getItems().add(InputLable.getText());
         }
+        ////////////////////////////////////////////////////////
         System.out.println("nativeLib.MainFunRunner = " + nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
         ErrorLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
     }
@@ -286,7 +287,6 @@ public class Controller {
         int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
         if (TextFieldX.isFocused()) {
             if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
-//                System.out.println("X changed");
                 TextFieldX.setText("0");
             }
         }
@@ -314,12 +314,12 @@ public class Controller {
         LineChart.getData().clear();
         XYChart.Series series = new XYChart.Series();
         series.setName("Graph");
-        try {
-            Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+//        try {
+//            Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return;
+//        }
 
         if(min < -1000000.0 || max > 1000000.0) {
             return;

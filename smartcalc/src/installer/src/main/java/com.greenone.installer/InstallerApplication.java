@@ -18,8 +18,8 @@ public class InstallerApplication extends Application {
             directoryChooser.setTitle("Select Directory");
 
             File selectedDirectory = directoryChooser.showDialog(primaryStage);
-            Save(selectedDirectory.getAbsolutePath());
             build();
+            save(selectedDirectory.getAbsolutePath());
             createShortcut(selectedDirectory.getAbsolutePath(),"SmartCalc");
 
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class InstallerApplication extends Application {
         launch();
     }
 
-    public static void Save(String path) throws IOException {
+    public static void save(String path) throws IOException {
         String projectPath = InstallerApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         projectPath = projectPath.substring(0, projectPath.lastIndexOf("/"));
         projectPath = projectPath.substring(0, projectPath.lastIndexOf("/"));
