@@ -1,14 +1,14 @@
 package com.greenone.installer;
 
-
 import javafx.application.Application;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.nio.file.*;
 import java.io.IOException;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.io.IOException;
+
 
 public class InstallerApplication extends Application {
     @Override
@@ -20,7 +20,7 @@ public class InstallerApplication extends Application {
             File selectedDirectory = directoryChooser.showDialog(primaryStage);
             build();
             save(selectedDirectory.getAbsolutePath());
-            createShortcut(selectedDirectory.getAbsolutePath(),"SmartCalc");
+            createShortcut(selectedDirectory.getAbsolutePath(), "SmartCalc");
 
         } catch (Exception e) {
             e.printStackTrace();

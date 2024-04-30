@@ -7,8 +7,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+
 import java.text.DecimalFormat;
 import java.io.*;
+
 
 public class Controller {
     private NativeLib nativeLib;
@@ -96,12 +98,6 @@ public class Controller {
     @FXML
     protected void DotButtonClick() {
         InputLable.setText(InputLable.getText() + ".");
-    }
-
-    @FXML
-    protected void ACButtonClick() {
-        InputLable.setText("");
-        ErrorLable.setText("");
     }
 
     @FXML
@@ -200,6 +196,12 @@ public class Controller {
     }
 
     @FXML
+    protected void ACButtonClick() {
+        InputLable.setText("");
+        ErrorLable.setText("");
+    }
+
+    @FXML
     public void CEButtonClick() {
         if (InputLable.getText().length() > 0) {
             InputLable.setText(InputLable.getText().substring(0, InputLable.getText().length() - 1));
@@ -219,7 +221,7 @@ public class Controller {
         listViewCopy = listViewShow;
         String jarPath = SmartCalcApplication.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         historyPath = jarPath.substring(0, jarPath.lastIndexOf("/")) + "/history.txt";
-        if (!new File(historyPath).exists()) {/////////////////////////////////
+        if (!new File(historyPath).exists()) {
             return;
         }
         try (BufferedReader reader = new BufferedReader(new FileReader(historyPath))) {
@@ -230,15 +232,6 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/history.txt"))) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                listViewShow.getItems().add(line);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @FXML
@@ -249,8 +242,6 @@ public class Controller {
         if (!InputLable.getText().isEmpty() && InputLable.getText().length() < 256) {
             listViewShow.getItems().add(InputLable.getText());
         }
-        ////////////////////////////////////////////////////////
-        System.out.println("nativeLib.MainFunRunner = " + nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
         ErrorLable.setText(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
     }
 
@@ -284,7 +275,7 @@ public class Controller {
 
     @FXML
     public void TextChange() {
-        int val_result; //0 - invalid, 1 - valid int, 2 - valid double.
+        //0 - invalid, 1 - valid int, 2 - valid double.
         if (TextFieldX.isFocused()) {
             if (nativeLib.FieldValidatorIntDouble(TextFieldX.getText()) == 0) {
                 TextFieldX.setText("0");
@@ -295,9 +286,9 @@ public class Controller {
     @FXML
     public void GraphButtonClick() {
         try {
-            double min = (MinTextField == null || MinTextField.getText().equals(""))? -10.0 : Double.parseDouble(MinTextField.getText());
-            double max = (MaxTextField == null || MaxTextField.getText().equals(""))? 10.0 : Double.parseDouble(MaxTextField.getText());
-            if(min < max) {
+            double min = (MinTextField == null || MinTextField.getText().equals("")) ? -10.0 : Double.parseDouble(MinTextField.getText());
+            double max = (MaxTextField == null || MaxTextField.getText().equals("")) ? 10.0 : Double.parseDouble(MaxTextField.getText());
+            if (min < max) {
                 Plot(min, max);
             }
         } catch (Exception e) {
@@ -314,21 +305,15 @@ public class Controller {
         LineChart.getData().clear();
         XYChart.Series series = new XYChart.Series();
         series.setName("Graph");
-//        try {
-//            Double.parseDouble(nativeLib.MainFunRunner(InputLable.getText(), TextFieldX.getText()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return;
-//        }
 
-        if(min < -1000000.0 || max > 1000000.0) {
+        if (min < -1000000.0 || max > 1000000.0) {
             return;
         }
         double N = 500.0;
         double h = (max - min) / N;
         double num;
 
-        for (double i = min; i < max; i+=h) {
+        for (double i = min; i < max; i += h) {
             DecimalFormat df = new DecimalFormat("#.##");
             String str = String.valueOf(df.format(i));
             try {
@@ -348,7 +333,6 @@ public class Controller {
     }
 
     public static void SaveHistory() {
-//        String historyFile = "src/main/resources/history.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(historyPath))) {
             for (int i = 0; listViewCopy != null && i < listViewCopy.getItems().size(); i++) {
                 writer.write(listViewCopy.getItems().get(i).toString());
